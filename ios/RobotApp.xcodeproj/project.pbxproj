@@ -148,7 +148,6 @@
 				76DC33F677DC0F563AF97024 /* Pods-RobotAppTests.debug.xcconfig */,
 				81B026812A2CE44E2446D3A7 /* Pods-RobotAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +307,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
