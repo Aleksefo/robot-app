@@ -22,10 +22,9 @@ export const QueueScreen = () => {
       <View style={styles.block}>
         <Text>Active Controllers</Text>
         {queue.robots &&
-          Object.keys(queue.robots).map(k => (
-            <Text>
-              {k} — {queue.robots[k].allocated} -{' '}
-              {(queue.robots[k].remaining / 1000).toFixed(0)}
+          Object.entries(queue.robots).map(([k, {allocated, remaining}]) => (
+            <Text key={k}>
+              {k} — {allocated} - {(remaining / 1000).toFixed(0)}
             </Text>
           ))}
       </View>
