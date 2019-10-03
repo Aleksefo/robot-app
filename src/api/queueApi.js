@@ -10,13 +10,13 @@ const create = (baseURL = config.hostname) => {
     },
     timeout: 10000,
   });
+  const {name, token} = config;
 
-  const registerUser = name =>
-    api.post('user/register', {name, token: config.token});
-  const getUser = token => api.get(`user?token=${token}`);
+  const registerUser = () => api.post('user/register', {name, token});
+  const getUser = () => api.get(`user?token=${token}`);
 
-  const queueUp = token => api.post(`robot/queue?token=${token}`);
-  const dequeue = token => api.post(`robot/queue?token=${token}`);
+  const queueUp = () => api.post(`robot/queue?token=${token}`);
+  const dequeue = () => api.post(`robot/queue?token=${token}`);
   const getQueue = () => api.get('robot/queue/status');
 
   return {

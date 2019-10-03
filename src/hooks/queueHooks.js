@@ -1,4 +1,4 @@
-import {useState, useCallback} from 'react';
+import {useState, useCallback, useEffect} from 'react';
 import QueueApi from '../api/queueApi';
 import {useInterval} from './intervalHook';
 
@@ -9,15 +9,18 @@ const queueApi = QueueApi.create();
 export function useQueueRegistration() {
   const [registrationState, setRegistrationStatus] = useState({});
 
-  const register = useCallback(async name => {
-    const response = await queueApi.registerUser(name);
-    if (response.ok) {
-      setRegistrationStatus(response.data);
+  useEffect(() => {
+    async function registerUser() {
+      const response = await queueApi.registerUser();
+      if (response.ok) {
+        setRegistrationStatus(response.data);
+      }
+      console.log(response);
     }
-    console.log(response.data);
+    registerUser();
   }, []);
 
-  return {registrationState, register};
+  return {registrationState};
 }
 
 export function useQueue() {
