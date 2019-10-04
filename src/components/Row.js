@@ -2,10 +2,15 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {colors} from '../theme';
 
-export const Row = ({title, value, centered}) => {
+export const Row = ({title, value, centered, bold}) => {
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, centered && {textAlign: 'center', flex: 1}]}>
+      <Text
+        style={[
+          styles.title,
+          centered && styles.centered,
+          bold && styles.bold,
+        ]}>
         {title}
       </Text>
       {value && <Text style={styles.value}>{value}</Text>}
@@ -36,5 +41,8 @@ const styles = StyleSheet.create({
   centered: {
     textAlign: 'center',
     flex: 1,
+  },
+  bold: {
+    fontWeight: 'bold',
   },
 });

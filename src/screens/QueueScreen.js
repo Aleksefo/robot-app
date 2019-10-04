@@ -1,11 +1,5 @@
-import React from 'react';
-import {
-  Text,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, SafeAreaView, StyleSheet} from 'react-native';
 import {
   useQueueStatus,
   useQueueRegistration,
@@ -14,12 +8,49 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import {SectionHeader} from '../components/SectionHeader';
 import {Row} from '../components/Row';
+import {Button} from '../components/Button';
 import {colors} from '../theme';
 
 export const QueueScreen = () => {
   const queue = useQueueStatus();
   const {registrationState} = useQueueRegistration();
-  const {queueState, queueUp} = useQueue();
+  const {queueUp} = useQueue();
+
+  const [queuingActive, setQueuingActive] = useState(true);
+  const [queuingButtonTitle, setQueuingButtonTitle] = useState('');
+  useEffect(() => {
+    if (
+      queue &&
+      queue.queue &&
+      queue.queue.filter(user => registrationState.id === user.id).length > 0
+    ) {
+      setQueuingActive(false);
+      setQueuingButtonTitle('You are in a queue');
+    } else if (
+      queue &&
+      queue.robots &&
+      Object.entries(queue.robots).filter(
+        ([k, robot]) => queue.robots[k].allocated.id === registrationState.id,
+      ).length > 0
+    ) {
+      setQueuingActive(false);
+      setQueuingButtonTitle('You are controlling the robot!');
+    } else {
+      setQueuingActive(true);
+      setQueuingButtonTitle('Queue Up');
+    }
+  }, [queue]);
+
+  const [registrationButtonTitle, setRegistrationButtonTitle] = useState('');
+  useEffect(() => {
+    setRegistrationButtonTitle(
+      `Registration Status:\n${
+        registrationState.token
+          ? 'Registered'
+          : 'Registration error, check your token in config.js'
+      }`,
+    );
+  }, [registrationState.token]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,8 +60,10 @@ export const QueueScreen = () => {
           {queue.robots && Object.keys(queue.robots).length ? (
             Object.entries(queue.robots).map(([k, {allocated, remaining}]) => (
               <Row
-                title={`${k} — ${allocated}`}
+                key={allocated.id}
+                title={`${k} — ${allocated.name}`}
                 value={`${(remaining / 1000).toFixed(0)} sec`}
+                bold={allocated.id === registrationState.id}
               />
             ))
           ) : (
@@ -44,7 +77,13 @@ export const QueueScreen = () => {
 
           <SectionHeader>Queue</SectionHeader>
           {queue.queue && queue.queue.length ? (
-            queue.queue.map(q => <Row title={q} />)
+            queue.queue.map(user => (
+              <Row
+                key={user.id}
+                title={user.name}
+                bold={user.id === registrationState.id}
+              />
+            ))
           ) : (
             <Row
               title={"Queue up and you'll be the next one to take control."}
@@ -56,31 +95,12 @@ export const QueueScreen = () => {
 
       <View style={styles.footerContainer}>
         <View style={styles.footer}>
-          <View style={styles.button}>
-            <Text>Registration Status:</Text>
-            <Text>
-              {registrationState.token
-                ? 'Registered'
-                : 'Registration error, check your token in config.js'}
-            </Text>
-          </View>
-
-          <View style={styles.button}>
-            {registrationState.token && (
-              <TouchableOpacity
-                onPress={() => {
-                  queueUp(registrationState.token);
-                }}>
-                <View style={styles.container}>
-                  <Text style={styles.buttonText}>Queue Up</Text>
-                  <Text style={styles.buttonText}>{JSON.stringify(queueState)}}</Text>
-                  {queueState.status === 'OK' && queueState && (
-                    <Text style={styles.buttonText}>Queued</Text>
-                  )}
-                </View>
-              </TouchableOpacity>
-            )}
-          </View>
+          <Button title={registrationButtonTitle} active={false} />
+          <Button
+            title={queuingButtonTitle}
+            active={queuingActive}
+            onPress={queueUp}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -91,13 +111,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  button: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRightWidth: 1,
-    borderColor: colors.lightGray,
-  },
   footerContainer: {
     height: 100,
   },
@@ -106,8 +119,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 1,
     borderColor: colors.lightGray,
-  },
-  buttonText: {
-    textAlign: 'center',
   },
 });
