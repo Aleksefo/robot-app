@@ -1,0 +1,762 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Robot API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Robot API</h1>
+    <div class="app-desc">Robot queue and control API</div>
+    <div class="app-desc">Version: 1.0</div>
+    
+    <div class="license-info">Starship Technologies. All rights reserved</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#RobotControl">RobotControl</a></h4>
+  <ul>
+  <li><a href="#robotControlBogiePost"><code><span class="http-method">post</span> /robot/control/bogie</code></a></li>
+  <li><a href="#robotControlIdentifyPost"><code><span class="http-method">post</span> /robot/control/identify</code></a></li>
+  <li><a href="#robotControlLightsPost"><code><span class="http-method">post</span> /robot/control/lights</code></a></li>
+  <li><a href="#robotControlMoveArcPost"><code><span class="http-method">post</span> /robot/control/move/arc</code></a></li>
+  <li><a href="#robotControlMovePost"><code><span class="http-method">post</span> /robot/control/move</code></a></li>
+  <li><a href="#robotControlMoveTurnPost"><code><span class="http-method">post</span> /robot/control/move/turn</code></a></li>
+  <li><a href="#robotControlPlaysoundPost"><code><span class="http-method">post</span> /robot/control/playsound</code></a></li>
+  <li><a href="#robotControlStopPost"><code><span class="http-method">post</span> /robot/control/stop</code></a></li>
+  </ul>
+  <h4><a href="#RobotQueue">RobotQueue</a></h4>
+  <ul>
+  <li><a href="#robotQueueExitPost"><code><span class="http-method">post</span> /robot/queue/exit</code></a></li>
+  <li><a href="#robotQueuePost"><code><span class="http-method">post</span> /robot/queue</code></a></li>
+  <li><a href="#robotQueueStatusGet"><code><span class="http-method">get</span> /robot/queue/status</code></a></li>
+  </ul>
+  <h4><a href="#User">User</a></h4>
+  <ul>
+  <li><a href="#userGet"><code><span class="http-method">get</span> /user</code></a></li>
+  <li><a href="#userRegisterPost"><code><span class="http-method">post</span> /user/register</code></a></li>
+  </ul>
+
+  <h1><a name="RobotControl">RobotControl</a></h1>
+  <div class="method"><a name="robotControlBogiePost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/bogie</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlBogiePost</span>)</div>
+    <div class="method-notes">Raise or lower robot bogies</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>      <div class="param">value (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Value to set </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    No access to robot
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotControlIdentifyPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/identify</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlIdentifyPost</span>)</div>
+    <div class="method-notes">Identifies the robot by flashing it&#x27;s lights</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    No access to robot
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotControlLightsPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/lights</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlLightsPost</span>)</div>
+    <div class="method-notes">Set robot lights on</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>      <div class="param">on (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; True if lights will be ON </div>      <div class="param">brightness (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Brightness value </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    No access to robot
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotControlMoveArcPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/move/arc</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlMoveArcPost</span>)</div>
+    <div class="method-notes">Move robot in smooth arc</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>      <div class="param">distance (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Distance to move </div>      <div class="param">angle (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Angle </div>      <div class="param">speed (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Value to set. Min 0.1, max 2.0. default 1.5 </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    No access to robot
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotControlMovePost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/move</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlMovePost</span>)</div>
+    <div class="method-notes">Move robot</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>      <div class="param">x (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Meters to move to the left or move to the right. Negative value moves to the left </div>      <div class="param">y (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Meters to move forwards or backwards. Negative value moves backwards </div>      <div class="param">bogie (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Value to set. Min -55, max 50, default 0 </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    No access to robot
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotControlMoveTurnPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/move/turn</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlMoveTurnPost</span>)</div>
+    <div class="method-notes">Turn robot in place</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>      <div class="param">angle (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Angle </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+    <h4 class="field-label">403</h4>
+    No access to robot
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotControlPlaysoundPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/playsound</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlPlaysoundPost</span>)</div>
+    <div class="method-notes">Plays a sound.The sound file has to be pre-registered by admin</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>      <div class="param">sound (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Sound identifier </div>      <div class="param">volume (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Sound volume. Min 0, max 24. If omitted, default of 12 is used </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotControlStopPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/control/stop</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotControlStopPost</span>)</div>
+    <div class="method-notes">Stops the robot</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Command executed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="RobotQueue">RobotQueue</a></h1>
+  <div class="method"><a name="robotQueueExitPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/queue/exit</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotQueueExitPost</span>)</div>
+    <div class="method-notes">Exit robot control queue or release control of a robot</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    OK. User removed from queue or robot control released.
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Unauthorised
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not found. User is not queued.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotQueuePost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /robot/queue</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotQueuePost</span>)</div>
+    <div class="method-notes">Enter queue to get control access to a robot</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200_1">inline_response_200_1</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "position" : 0.8008281904610115,
+  "remaining" : 6.027456183070403,
+  "status" : "OK",
+  "since" : "since"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#inline_response_200_1">inline_response_200_1</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="robotQueueStatusGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /robot/queue/status</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">robotQueueStatusGet</span>)</div>
+    <div class="method-notes">Get robot control queue status.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Current robot control queue status
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="User">User</a></h1>
+  <div class="method"><a name="userGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /user</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">userGet</span>)</div>
+    <div class="method-notes">Register user</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "name" : "Robot user",
+  "token" : "6fcd9f70-1de2-4a4e-88e5-a84adb4c269f"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="userRegisterPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/register</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">userRegisterPost</span>)</div>
+    <div class="method-notes">Register user</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User name </div>      <div class="param">token (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User access token </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_200">inline_response_200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "name" : "Robot user",
+  "token" : "6fcd9f70-1de2-4a4e-88e5-a84adb4c269f"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#inline_response_200">inline_response_200</a>
+    <h4 class="field-label">401</h4>
+    Invalid user token
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
+    <li><a href="#inline_response_200_1"><code>inline_response_200_1</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="inline_response_200"><code>inline_response_200</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Robot user</span></div>
+<div class="param">token </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 6fcd9f70-1de2-4a4e-88e5-a84adb4c269f</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_1"><code>inline_response_200_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> OK - Robot access granted, QUEUED - Request queued </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">OK</div><div class="param-enum">QUEUED</div>
+<div class="param">position (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span> Position in queue if status &#x3D; QUEUED </div>
+<div class="param">since (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If status &#x3D; OK, the time since robot access was granted format: datetime</div>
+<div class="param">remaining (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span> If status &#x3D; OK, the remaining time in ms until control is again disallowed </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
