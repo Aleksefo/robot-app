@@ -30,8 +30,7 @@ const DpadScreen = props => {
     );
   };
   return (
-    <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
-      <Text>DpadScreen component</Text>
+    <View style={{flex: 1, backgroundColor: colors.white, padding: 20}}>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <View
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
