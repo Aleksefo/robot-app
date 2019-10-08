@@ -20,7 +20,7 @@ const identify = async () => {
   }
 };
 
-const lights = async (on: boolean, brightness) => {
+const lights = async (on, brightness) => {
   const response = await robotApi.lights(on ? 'true' : 'false', 10);
   if (!response.ok) {
     Alert.alert(response.originalError.message);
