@@ -57,7 +57,7 @@ const bogie = async value => {
 };
 
 const playsound = async () => {
-  const response = await robotApi.playsound('https://freesound.org/data/previews/343/343490_1196472-lq.mp3');
+  const response = await robotApi.playsound('https://freesound.org/data/previews/49/49477_52325-lq.mp3');
   if (!response.ok) {
     Alert.alert(response.originalError.message);
   }
@@ -141,7 +141,7 @@ export const ControllerScreen = () => {
           <Button title="QVIK: Play sound" onPress={playsound} active />
         </View>
         <View style={styles.button}>
-          <Button title="QVIK: Spin" onPress={spin} active />
+          <Button title="QVIK: Play sound" onPress={spin} active />
         </View>
         <View style={styles.button}>
           <Button title="Stop" onPress={stop} active />

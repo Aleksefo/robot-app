@@ -9,6 +9,7 @@
     "test": "jest",
     "lint": "eslint . --fix"
   },
+  
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
     "apisauce": "^1.1.1",
