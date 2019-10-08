@@ -6,10 +6,16 @@ const robotApi = RobotApi.create();
 
 const DpadScreen = props => {
   const turnLeft = () => {
-    robotApi.turn(45);
+    robotApi.turn(-45);
   };
   const turnRight = () => {
-    robotApi.turn(-45);
+    robotApi.turn(45);
+  };
+  const goForward = () => {
+    robotApi.move(0, 1);
+  };
+  const goBack = () => {
+    robotApi.move(0, -1);
   };
   return (
     <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
@@ -19,6 +25,12 @@ const DpadScreen = props => {
       </TouchableHighlight>
       <TouchableHighlight onPress={turnRight}>
         <Text style={{fontSize: 72}}>➡️</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={goForward}>
+        <Text style={{fontSize: 72}} >⬆️</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={goBack}>
+        <Text style={{fontSize: 72}}>⬇️</Text>
       </TouchableHighlight>
     </View>
   );
