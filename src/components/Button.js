@@ -1,7 +1,6 @@
 import React, {useCallback} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import {colors} from '../theme';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const Button = ({title, onPress, active, color}) => {
   const onPressCallback = useCallback(() => {
