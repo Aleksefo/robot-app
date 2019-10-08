@@ -56,7 +56,7 @@ const bogie = async value => {
 };
 
 const playsound = async () => {
-  const response = await robotApi.playsound(`https://www.soundjay.com/button/beep-01a.mp3`);
+  const response = await robotApi.playsound(`https://freesound.org/data/previews/343/343490_1196472-lq.mp3`);
   if (!response.ok) {
     Alert.alert(response.originalError.message);
   }
@@ -115,6 +115,15 @@ export const ControllerScreen = () => {
       </View>
       <View style={styles.button}>
         <Button title="Set bogie 25" onPress={() => bogie(25)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Set bogie 25" onPress={() => bogie(50)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Set bogie 25" onPress={() => bogie(75)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Set bogie 25" onPress={() => bogie(100)} active />
       </View>
       <View style={styles.button}>
         <Button title="Set bogie 0" onPress={() => bogie(0)} active />
