@@ -1,14 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import RobotApi from '../api/robotApi';
+const robotApi = RobotApi.create();
 
 const DpadScreen = props => {
   const turnLeft = () => {
-
-  }
+    robotApi.turn(45);
+  };
   const turnRight = () => {
-    
-  }
+    robotApi.turn(-45);
+  };
   return (
     <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
       <Text>DpadScreen component</Text>
