@@ -13,10 +13,15 @@ const DpadScreen = props => {
     robotApi.turn(45);
   };
   const goForward = () => {
-    robotApi.move(0, 1);
+    robotApi.move(0, 2);
   };
   const goBack = () => {
-    robotApi.move(0, -1);
+    robotApi.move(0, -2);
+  };
+  const spin = () => {
+    robotApi.bogie(-50);
+    robotApi.bogie(50);
+    robotApi.turn(360);
   };
   return (
     <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
@@ -32,6 +37,9 @@ const DpadScreen = props => {
       </TouchableHighlight>
       <TouchableHighlight onPress={goBack}>
         <Text style={{fontSize: 72}}>⬇️</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={spin}>
+        <Text style={{fontSize: 72}}>♺</Text>
       </TouchableHighlight>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <View
