@@ -23,6 +23,16 @@ const DpadScreen = props => {
     robotApi.bogie(50);
     robotApi.turn(360);
   };
+  const blink = () => {
+    robotApi.lights(true);
+    robotApi.lights(false);
+    robotApi.lights(true);
+    robotApi.lights(false);
+    robotApi.lights(true);
+    robotApi.lights(false);
+    robotApi.lights(true);
+    robotApi.lights(false);
+  }
   const sound = () => {
     robotApi.playsound(
       'https://freesound.org/data/previews/49/49477_52325-lq.mp3',
@@ -84,7 +94,11 @@ const DpadScreen = props => {
         <View
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
         <View
-          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}>
+            <TouchableHighlight onPress={blink}>
+            <Text style={{fontSize: 72, alignSelf: 'center'}}>💡</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     </View>
   );
