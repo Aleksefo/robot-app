@@ -22,6 +22,9 @@ const DpadScreen = props => {
     robotApi.bogie(50);
     robotApi.turn(360);
   };
+  const sound = () => {
+    robotApi.playsound('https://freesound.org/data/previews/49/49477_52325-lq.mp3', 20);
+  }
   return (
     <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
       <Text>DpadScreen component</Text>
@@ -39,6 +42,9 @@ const DpadScreen = props => {
       </TouchableHighlight>
       <TouchableHighlight onPress={spin}>
         <Text style={{fontSize: 72}}>♺</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={sound}>
+        <Text style={{fontSize: 72}}>🔈</Text>
       </TouchableHighlight>
     </View>
   );
