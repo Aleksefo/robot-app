@@ -17,8 +17,55 @@ const identify = async () => {
   const response = await robotApi.identify();
   if (!response.ok) {
     Alert.alert(response.originalError.message);
-  } else {
-    Alert.alert('Identified');
+  }
+};
+
+const lights = async (on: boolean, brightness) => {
+  const response = await robotApi.lights(on ? 'true' : 'false', 10);
+  if (!response.ok) {
+    Alert.alert(response.originalError.message);
+  }
+};
+
+const turn = async angle => {
+  const response = await robotApi.turn(angle);
+  if (!response.ok) {
+    Alert.alert(response.originalError.message);
+  }
+};
+
+const move = async (x = 0, y = 0, bogie = 0) => {
+  const response = await robotApi.move(x, y, bogie);
+  if (!response.ok) {
+    Alert.alert(response.originalError.message);
+  }
+};
+
+const moveArc = async (distance, angle, speed = 1.5) => {
+  const response = await robotApi.moveArc(distance, angle, speed);
+  if (!response.ok) {
+    Alert.alert(response.originalError.message);
+  }
+};
+
+const bogie = async value => {
+  const response = await robotApi.bogie(value);
+  if (!response.ok) {
+    Alert.alert(response.originalError.message);
+  }
+};
+
+const playsound = async () => {
+  const response = await robotApi.playsound(`https://www.soundjay.com/button/beep-01a.mp3`);
+  if (!response.ok) {
+    Alert.alert(response.originalError.message);
+  }
+};
+
+const stop = async () => {
+  const response = await robotApi.stop();
+  if (!response.ok) {
+    Alert.alert(response.originalError.message);
   }
 };
 
@@ -27,6 +74,56 @@ export const ControllerScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.button}>
         <Button title="Identify" onPress={identify} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Lights on" onPress={() => lights(true)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Lights off" onPress={() => lights(false)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Turn left 90" onPress={() => turn(-90)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Turn right 90" onPress={() => turn(90)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Move fwd 1m" onPress={() => move(0, 1)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Move bwd -1m" onPress={() => move(0, -1)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Move r1 f1" onPress={() => move(1, 1)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Move l1 f1" onPress={() => move(-1, 1)} active />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Move arc right"
+          onPress={() => moveArc(1.5, 90)}
+          active
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="Move arc left"
+          onPress={() => moveArc(1.5, -90)}
+          active
+        />
+      </View>
+      <View style={styles.button}>
+        <Button title="Set bogie 25" onPress={() => bogie(25)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Set bogie 0" onPress={() => bogie(0)} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Play sound" onPress={playsound} active />
+      </View>
+      <View style={styles.button}>
+        <Button title="Stop" onPress={stop} active />
       </View>
     </SafeAreaView>
   );
@@ -39,10 +136,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 30,
+    margin: 5,
     borderWidth: 1,
-    borderColor: colors.leghtGray,
+    borderColor: colors.lightGray,
     justifyContent: 'center',
     alignItems: 'center',
   },
