@@ -26,42 +26,47 @@ const DpadScreen = props => {
   return (
     <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
       <Text>DpadScreen component</Text>
-      <TouchableHighlight onPress={turnLeft}>
-        <Text style={{fontSize: 72}}>⬅️</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={turnRight}>
-        <Text style={{fontSize: 72}}>➡️</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={goForward}>
-        <Text style={{fontSize: 72}}>⬆️</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={goBack}>
-        <Text style={{fontSize: 72}}>⬇️</Text>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={spin}>
-        <Text style={{fontSize: 72}}>♺</Text>
-      </TouchableHighlight>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <View
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
-        <View
-          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View style={{flex: 1, borderColor: colors.black, borderWidth: 2}}>
+          <TouchableHighlight onPress={goForward}>
+            <Text style={{fontSize: 72, alignSelf: 'center'}}>⬆️</Text>
+          </TouchableHighlight>
+        </View>
         <View
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
       </View>
       <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flex: 1, borderColor: colors.black, borderWidth: 2}}>
+          <TouchableHighlight onPress={turnLeft}>
+            <Text style={{fontSize: 72, alignSelf: 'center'}}>⬅️</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={{flex: 1, borderColor: colors.black, borderWidth: 2}}>
+          <TouchableHighlight onPress={spin}>
+            <Text style={{fontSize: 72, alignSelf: 'center'}}>♺</Text>
+          </TouchableHighlight>
+        </View>
         <View
-          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
-        <View
-          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
-        <View
-          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+          style={{
+            flex: 1,
+            borderColor: colors.black,
+            borderWidth: 2,
+          }}>
+          <TouchableHighlight onPress={turnRight}>
+            <Text style={{fontSize: 72, alignSelf: 'center'}}>➡️</Text>
+          </TouchableHighlight>
+        </View>
       </View>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <View
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
-        <View
-          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View style={{flex: 1, borderColor: colors.black, borderWidth: 2}}>
+          <TouchableHighlight onPress={goBack}>
+            <Text style={{fontSize: 72, alignSelf: 'center'}}>⬇️</Text>
+          </TouchableHighlight>
+        </View>
         <View
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
       </View>
