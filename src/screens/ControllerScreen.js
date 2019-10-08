@@ -131,7 +131,7 @@ export const ControllerScreen = () => {
           <Button title="Set bogie 0" onPress={() => bogie(0)} active />
         </View>
         <View style={styles.button}>
-          <Button title="Play sound" onPress={playsound} active />
+          <Button title="QVIK: Play sound" onPress={playsound} active />
         </View>
         <View style={styles.button}>
           <Button title="Stop" onPress={stop} active />
