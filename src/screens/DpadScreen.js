@@ -24,8 +24,11 @@ const DpadScreen = props => {
     robotApi.turn(360);
   };
   const sound = () => {
-    robotApi.playsound('https://freesound.org/data/previews/49/49477_52325-lq.mp3', 20);
-  }
+    robotApi.playsound(
+      'https://freesound.org/data/previews/49/49477_52325-lq.mp3',
+      20,
+    );
+  };
   return (
     <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
       <Text>DpadScreen component</Text>
@@ -74,8 +77,11 @@ const DpadScreen = props => {
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
       </View>
       <View style={{flex: 1, flexDirection: 'row'}}>
-        <View
-          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View style={{flex: 1, borderColor: colors.black, borderWidth: 2}}>
+          <TouchableHighlight onPress={sound}>
+            <Text style={{fontSize: 72, alignSelf: 'center'}}>🔈</Text>
+          </TouchableHighlight>
+        </View>
         <View
           style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
         <View
