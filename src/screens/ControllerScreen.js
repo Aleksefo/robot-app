@@ -141,7 +141,7 @@ export const ControllerScreen = () => {
           <Button title="QVIK: Play sound" onPress={playsound} active />
         </View>
         <View style={styles.button}>
-          <Button title="QVIK: Play sound" onPress={spin} active />
+          <Button title="QVIK: Spin" onPress={spin} active />
         </View>
         <View style={styles.button}>
           <Button title="Stop" onPress={stop} active />
