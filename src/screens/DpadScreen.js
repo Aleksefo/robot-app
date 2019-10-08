@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import {TouchableHighlight} from 'react-native-gesture-handler';
 import RobotApi from '../api/robotApi';
+import {colors} from '../theme';
 const robotApi = RobotApi.create();
 
 const DpadScreen = props => {
@@ -21,17 +22,49 @@ const DpadScreen = props => {
     <View style={{flex: 1, backgroundColor: 'blue', padding: 20}}>
       <Text>DpadScreen component</Text>
       <TouchableHighlight onPress={turnLeft}>
-        <Text style={{fontSize: 72}} >⬅️</Text>
+        <Text style={{fontSize: 72}}>⬅️</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={turnRight}>
         <Text style={{fontSize: 72}}>➡️</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={goForward}>
-        <Text style={{fontSize: 72}} >⬆️</Text>
+        <Text style={{fontSize: 72}}>⬆️</Text>
       </TouchableHighlight>
       <TouchableHighlight onPress={goBack}>
         <Text style={{fontSize: 72}}>⬇️</Text>
       </TouchableHighlight>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+      </View>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+      </View>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+      </View>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+        <View
+          style={{flex: 1, borderColor: colors.black, borderWidth: 2}}></View>
+      </View>
     </View>
   );
 };
