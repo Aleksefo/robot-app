@@ -56,7 +56,9 @@ const bogie = async value => {
 };
 
 const playsound = async () => {
-  const response = await robotApi.playsound(`https://freesound.org/data/previews/343/343490_1196472-lq.mp3`);
+  const response = await robotApi.playsound(
+    `https://freesound.org/data/previews/343/343490_1196472-lq.mp3`,
+  );
   if (!response.ok) {
     Alert.alert(response.originalError.message);
   }
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 150,
-    height: 30,
+    height: 20,
     margin: 5,
     borderWidth: 1,
     borderColor: colors.lightGray,
