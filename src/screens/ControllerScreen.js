@@ -10,6 +10,7 @@ import {
 import {colors} from '../theme';
 import RobotApi from '../api/robotApi';
 import {Button} from '../components/Button';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const robotApi = RobotApi.create();
 
@@ -74,68 +75,70 @@ const stop = async () => {
 export const ControllerScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.button}>
-        <Button title="Identify" onPress={identify} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Lights on" onPress={() => lights(true)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Lights off" onPress={() => lights(false)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Turn left 90" onPress={() => turn(-90)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Turn right 90" onPress={() => turn(90)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Move fwd 1m" onPress={() => move(0, 1)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Move bwd -1m" onPress={() => move(0, -1)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Move r1 f1" onPress={() => move(1, 1)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Move l1 f1" onPress={() => move(-1, 1)} active />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Move arc right"
-          onPress={() => moveArc(1.5, 90)}
-          active
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="Move arc left"
-          onPress={() => moveArc(1.5, -90)}
-          active
-        />
-      </View>
-      <View style={styles.button}>
-        <Button title="Set bogie 25" onPress={() => bogie(25)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Set bogie 25" onPress={() => bogie(50)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Set bogie 25" onPress={() => bogie(75)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Set bogie 25" onPress={() => bogie(100)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Set bogie 0" onPress={() => bogie(0)} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Play sound" onPress={playsound} active />
-      </View>
-      <View style={styles.button}>
-        <Button title="Stop" onPress={stop} active />
-      </View>
+      <ScrollView style={{width: '100%'}} >
+        <View style={styles.button}>
+          <Button title="Identify" onPress={identify} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Lights on" onPress={() => lights(true)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Lights off" onPress={() => lights(false)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Turn left 90" onPress={() => turn(-90)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Turn right 90" onPress={() => turn(90)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Move fwd 1m" onPress={() => move(0, 1)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Move bwd -1m" onPress={() => move(0, -1)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Move r1 f1" onPress={() => move(1, 1)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Move l1 f1" onPress={() => move(-1, 1)} active />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Move arc right"
+            onPress={() => moveArc(1.5, 90)}
+            active
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            title="Move arc left"
+            onPress={() => moveArc(1.5, -90)}
+            active
+          />
+        </View>
+        <View style={styles.button}>
+          <Button title="Set bogie 25" onPress={() => bogie(25)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Set bogie 25" onPress={() => bogie(50)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Set bogie 25" onPress={() => bogie(75)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Set bogie 25" onPress={() => bogie(100)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Set bogie 0" onPress={() => bogie(0)} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="QVIK: Play sound" onPress={playsound} active />
+        </View>
+        <View style={styles.button}>
+          <Button title="Stop" onPress={stop} active />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
